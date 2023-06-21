@@ -4,23 +4,31 @@
 
 ## Consigna. Se está requiriendo lo siguiente:
 
-Configurar nuestro proyecto para que trabaje con Handlebars y websocket. En este caso usé el puerto 8081.
+Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes elementos:.
 
 ## Aspectos a incluir
 
-- Configurar el servidor para integrar el motor de plantillas Handlebars e instalar un servidor de socket.io al mismo. 
+- Agregar el modelo de persistencia de Mongo y mongoose a tu proyecto. 
 
-- Crear una vista “home.handlebars” la cual contenga una lista de todos los productos agregados hasta el momento.
+- Crear una base de datos llamada “ecommerce” dentro de tu Atlas, crear sus colecciones “carts”, “messages”, “products” y sus respectivos schemas.
 
-- Además, crear una vista “realTimeProducts.handlebars”, la cual vivirá en el endpoint “/realtimeproducts” en nuestro views router, ésta contendrá la misma lista de productos, sin embargo, ésta trabajará con websockets.
+- Separar los Managers de fileSystem de los managers de MongoDb en una sola carpeta “dao”. Dentro de dao, agregar también una carpeta “models” donde vivirán los esquemas de MongoDB. La estructura deberá ser igual a la vista en la clase 15, integradora.
 
-- Al trabajar con websockets, cada vez que creemos un producto nuevo, o bien cada vez que eliminemos un producto, se debe actualizar automáticamente en dicha vista la lista.
+- Contener todos los Managers (FileSystem y DB) en una carpeta llamada “Dao”.
+
+- Reajustar los servicios con el fin de que puedan funcionar con Mongoose en lugar de FileSystem.
+
+- NO ELIMINAR FileSystem de tu proyecto.
+
+- Implementar una vista nueva en handlebars llamada chat.handlebars, la cual permita implementar un chat como el visto en clase. Los mensajes deberán guardarse en una colección “messages” en mongo (no es necesario implementarlo en FileSystem). El formato es:  {user:correoDelUsuario, message: mensaje del usuario}.
+
+- Corroborar la integridad del proyecto para que todo funcione como lo ha hecho hasta ahora.
+
 
 ### Sugerencias
 
-- Ya que la conexión entre una consulta HTTP y websocket no está contemplada dentro de la clase. Se recomienda que, para la creación y eliminación de un producto, Se cree un formulario simple en la vista  realTimeProducts.handlebars. Para que el contenido se envíe desde websockets y no HTTP. Sin embargo, esta no es la mejor solución, leer el siguiente punto.
+- Te recomendamos que, para este entregable, repitas las pruebas realizadas en la pre-entrega de la clase 8.n
 
-- Si se desea hacer la conexión de socket emits con HTTP, deberás buscar la forma de utilizar el servidor io de Sockets dentro de la petición POST. ¿Cómo utilizarás un emit dentro del POST?
 
 ## Formato del entregable
 
@@ -29,14 +37,10 @@ Configurar nuestro proyecto para que trabaje con Handlebars y websocket. En este
 
 ## *PROCESO DE TESTING*
 
-- Se instalará y correrá el servidor en el puerto indicado.
-    - El servidor debe levantarse sin problema.
-- Se abrirá la ruta raíz
-    - Debe visualizarse el contenido de la vista index.handlebars. ((En mi caso usé “home.handlebars”, ya que así decía la consigna al principio)).
-    - No se debe activar el websocket aún.
-- Se buscará en la url del navegador la ruta “/realtimeproducts”.
-    - Se corroborará que el servidor haya conectado con el cliente, en la consola del servidor deberá mostrarse un mensaje de “cliente conectado”.
-    - Se debe mostrar la lista de productos y se corroborará que se esté enviando desde websocket.
+- 1
+
+- 2
+
 ## Rutas:
 
 - Carritos:
