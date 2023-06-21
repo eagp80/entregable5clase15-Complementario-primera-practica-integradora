@@ -46,18 +46,18 @@ Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los
 ## Rutas:
 
 - Carritos:
-    - /api/carts/:cid   GET_BY_CID  muestra carrito cid.
+    - /api/carts/:cid   GET_BY_CID  trae carrito cid en formato JSON.
     - /api/carts/   POST crea un carrito nuevo vacío.
     - /api/carts/:cid/product/:pid  POST agregar producto pid a carrito cid.
     - En api/carts/  No hay PUT ni DELETE.
 
 - Productos:
-    - /api/products/:pid GET_BY_PID muestra carrito pid, PUT con postman body y params, DELETE con postman y params.
-    - /api/products/ GET de todos los productos, POST con postman y body.
-    - /api/products?limit=NUM GET muestra los primeros NUM productos. Utiliza req.query
+    - /api/products/:pid GET_BY_PID muestra carrito pid en formato JSON, PUT con postman body y params, DELETE con postman y params.
+    - /api/products/ GET de todos los productos en formato JSON y no hay formulario, POST con postman y body.
+    - /api/products?limit=NUM GET muestra los primeros NUM productos en formato JSON. Utiliza req.query.
 
     - Adicionalmente, en localhost:8081/index2.html se tiene un formulario html para hacer post de product.
 
 - Socket IO:
-    - /    GET    Tiene socket. Utiliza vista "home.handlebars" y muestra lista de todos los productos. No tiene formulario.
-    - /realtimeproducts  GET   Tiene socket. Utiliza vista "realTimeProducts.handlebars" y Tiene formulario para hacer post de product, muestra Lista de productos, al crear un producto nuevo lo muestra resaltado en una tabla y agrega al final de la lista mostrada el nuevo producto.
+    - /    GET    Tiene socket. Utiliza vista "home.handlebars" y muestra lista de todos los productos en html. No tiene formulario.
+    - /realtimeproducts  GET   Tiene socket. Utiliza vista "realTimeProducts.handlebars" y Tiene formulario para hacer post de product, muestra Lista de productos, al crear un producto nuevo lo muestra resaltado en una tabla y agrega al final de la lista mostrada el nuevo producto en html.
