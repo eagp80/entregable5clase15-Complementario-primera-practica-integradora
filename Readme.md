@@ -54,6 +54,7 @@ Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los
 - Productos:
     - /api/products/:pid GET_BY_PID muestra carrito pid, PUT con postman body y params, DELETE con postman y params.
     - /api/products/ GET de todos los productos, POST con postman y body.
+    - /api/products?limit=NUM  muestra los primeros NUM productos. utiliza req.query
 
     - Adicionalmente, en localhost:8081/index2.html se tiene un formulario html para hacer post de product.
 
