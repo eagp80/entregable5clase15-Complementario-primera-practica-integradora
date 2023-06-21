@@ -56,7 +56,7 @@ Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los
     - /api/products/ GET de todos los productos en formato JSON y no hay formulario, POST con postman y body.
     - /api/products?limit=NUM GET muestra los primeros NUM productos en formato JSON. Utiliza req.query.
 
-    - Adicionalmente, en localhost:8081/index2.html se tiene un formulario html para hacer post de product.
+    - Adicionalmente, en localhost:8081/index2.html se tiene un formulario html para hacer POST de product.
 
 - Socket IO:
     - /    GET    Tiene socket. Utiliza vista "home.handlebars" y muestra lista de todos los productos en html. No tiene formulario.
