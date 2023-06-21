@@ -3,10 +3,11 @@
 # PRIMEROS PASOS DE UN ECOMERCE.
 ##  SERVIDOR DE PRODUCTOS Y CARRITOS CON EXPRESS Y WEBSOCKET SOCKETS.IO, VISTAS HANDLEBARS, BASE DE DATOS CON MONGO ATLAS (JUNTO A FILE SYSTEM) Y CHAT.
 ### CORRESPODE A ENTREGABLE 5 CLASE 15.
+...
 
 ## Consigna. Se está requiriendo lo siguiente:
 
-Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes elementos:.
+Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes elementos:
 
 ## Aspectos a incluir
 
