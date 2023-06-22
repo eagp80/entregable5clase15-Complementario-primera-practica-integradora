@@ -2,8 +2,7 @@ import { connect } from "mongoose";
 
 import { DB_HOST, DB_PORT, DB_NAME, DB_CNN } from "../config/config.js";
 
-const configConnection = {
-  //rl:"mongodb+srv://eagp80:Efren1313@clusterefren0.heiibqk.mongodb.net/?retryWrites=true&w=majority",
+const configConnection = {  
   //url: `mongodb://127.0.0.1:27017/estudiantes`,
   url: DB_CNN ?? `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`,
   options: {
@@ -11,7 +10,6 @@ const configConnection = {
     useUnifiedTopology: true,
   },
 };
-
 
 const mongoDBConnection = async () => {
   try {
