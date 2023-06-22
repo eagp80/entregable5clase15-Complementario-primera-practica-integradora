@@ -44,7 +44,7 @@ Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los
 
 - 2
 
-## Rutas:
+## Rutas para servidor con file-system en puerto 8081:
 
 - Carritos:
     - /api/carts/:cid   GET_BY_CID  trae carrito cid en formato JSON.
@@ -62,3 +62,18 @@ Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los
 - Socket IO:
     - /    GET    Tiene socket. Utiliza vista "home.handlebars" y muestra lista de todos los productos en html. No tiene formulario.
     - /realtimeproducts  GET   Tiene socket. Utiliza vista "realTimeProducts.handlebars" y Tiene formulario para hacer post de product, muestra Lista de productos, al crear un producto nuevo lo muestra resaltado en una tabla y agrega al final de la lista mostrada el nuevo producto en html.
+
+## Rutas para servidor con Mongo-Atlas en puerto 8000:
+
+# Rutas carritos con Mongo:
+
+-  /api/v1/cartsmongo  GET
+-  /api/v1/cartsmongo/:cartsMongoId  GET DELETE
+-  /api/v1/cartsmongo/  POST
+-  /api/v1/cartsmongo/:cartsMongoId  PUT
+
+# Rutas productos con Mongo:
+
+-  /api/v1/productsmongo/insertion GET
+-  /api/v1/productsmongo GET POST
+-  /api/v1/productsmongo/:productMongoId GET

@@ -24,7 +24,7 @@ class CartsMongoRoutes {
       return res.json({ message: `cartsMongo POST` });
     });
 
-    this.router.put(`${this.path}/:cartsId`, async (req, res) => {
+    this.router.put(`${this.path}/:cartsMongoId`, async (req, res) => {
       return res.json({ message: `cartsMongo PUT` });
     });
 
