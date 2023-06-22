@@ -16,14 +16,6 @@ import ProductsMongoRoute from './routes/productsMongo.router.js';
 
 
 
-const appMongo = new AppMongo([
-  //new BaseRoute(),
-  new CartsMongoRoute(),
-  new ProductsMongoRoute(),
-  //new viewsRoutes(),
-]);
-
-appMongo.listen();
 
 
 const app = express();
@@ -44,8 +36,14 @@ app.set('view engine', 'handlebars');//le decimos a app que el motor de vistas e
 
 app.use('/',viewsRouter);//al llegar la ruta especificada lo procesa con viewsRouter
 
-const serverHTTP = app.listen(8081, ()=>console.log("Servidor Efren en  8081"));
+const serverHTTP = app.listen(8081, ()=>{
+       console.log("Servidor con file-system en puerto 8081");
+       console.log("=================================================");
+       console.log("=================================================");
+});
 const io= new Server (serverHTTP);
+
+
 
 const productManager = new ProductManager("./products.json");//en directorio de proyecto
 const products = productManager.getProducts();
@@ -82,3 +80,13 @@ io.on('connection', socket=>{
 //        socket.broadcast.emit('newUserConnected', data);
 // });
 });
+
+
+const appMongo = new AppMongo([
+       //new BaseRoute(),
+       new CartsMongoRoute(),
+       new ProductsMongoRoute(),
+       //new viewsRoutes(),
+     ]);
+     
+appMongo.listen();

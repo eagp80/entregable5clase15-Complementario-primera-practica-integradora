@@ -16,11 +16,11 @@ const configConnection = {
 const mongoDBConnection = async () => {
   try {
     await connect(configConnection.url, configConnection.options);
-    console.log(`================================= CONNECCION MONGO`);
+    console.log(`==========CONNECCION CON MONGO REALIZADA=========== `);
     console.log(
-      `======= URL: ${configConnection.url.substring(0, 20)} =======`
+      `=========== URL: ${configConnection.url.substring(0, 20)} =============`
     );
-    console.log(`=================================`);
+    console.log(`===================================================`);
   } catch (err) {
     console.log("🚀 ~ file: mongo.config.js:9 ~ mongoDBConnection ~ err:", err);
   }
