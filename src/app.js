@@ -1,11 +1,30 @@
 import express from "express";
 import {Server} from 'socket.io';
+//const cors = require("cors");
+//const displayRoutes = require("express-routemap");
+import { NODE_ENV, PORT, API_VERSION, CURSO } from "./config/config.js";
+import { mongoDBConnection } from "./db/mongo.config.js";
 import handlebars from "express-handlebars";
 import ProductManager from './productManager.js'
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import viewsRouter from './routes/views.router.js';
 import __dirname from './utils.js'
+import AppMongo from './appMongo.js'
+import CartsMongoRoute from './routes/cartsMongo.router.js';
+import ProductsMongoRoute from './routes/productsMongo.router.js';
+
+
+
+const appMongo = new AppMongo([
+  //new BaseRoute(),
+  new CartsMongoRoute(),
+  new ProductsMongoRoute(),
+  //new viewsRoutes(),
+]);
+
+appMongo.listen();
+
 
 const app = express();
 //FLUJO DE TRABAJO..
@@ -63,59 +82,3 @@ io.on('connection', socket=>{
 //        socket.broadcast.emit('newUserConnected', data);
 // });
 });
-
-
-
-// app.get('/bienvenida', (req,res)=>{
-//     res.send(`<h1 style = "color:blue"> Bienvenidos a mi primer servidor con express version 2</h1>`);
-// });
-
-
-// app.get('/DimeNombre/:nombre', (req,res)=>{
-//     res.send(`<h1 style = "color:blue">Hola señor ${req.params.nombre} gracias por su visita</h1>`)
-// });
-
-// app.get('/ActivaLuces/:LedA/:LedB', (req,res)=>{
-//     res.send(`<h1 style = "color:green">Encendida${req.params.LedA} </h1>
-//     <h1 style = "color:green">Encendida ${req.params.LedB} </h1>`)
-// });
-
-// app.listen(
-//     8080,()=>console.log("Servidor Efren activado en puerto 8080")
-// );
-
-// ]
-// app.get('/ejemploQueries', (req,res)=>{
-//     let genero=req.query.genero;
-//     if(!genero||(genero!="M"&&genero!="F")) {res.send({error: "Ingrese genero M o F"})}
-//     else {
-
-//     let usuariosFiltrados=usuarios.filter(usuario=>usuario.genero===genero);
-//     let consultas=req.query;
-//     let {nombre,apellido,edad}=req.query;
-//     res.send({usuarios:usuariosFiltrados});
-//     }
-// })
-
-
-
-
-
-
-// console.log(productManager.getProducts());
-// a1=productManager.getProductById(1);
-// console.log(a1);
-// a0=productManager.getProductById(0);
-// console.log(a0);
-// a3=productManager.getProductById(3);
-// console.log(a3);
-// productManager.addProduct("Producto 3", "Descripción del producto 3", 500, "imagen/logo3.jpg", 1, 5);
-// productManager.addProduct("Producto 3", "Descripción del producto 3", 500, "imagen/logo3.jpg");
-// console.log(productManager.getProducts());
-// productManager.updateProduct(1,{title:undefined,description:"Descripcion actualizada producto 3",price:300, thumbnail:"imagen/logo2.jpg", code:2});
-// a1=productManager.getProductById(1);
-// console.log(a1);
-// productManager.deleteProduct(1);
-// a1=productManager.getProductById(0);
-// console.log(`producto::`,a1);
-
