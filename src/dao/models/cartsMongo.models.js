@@ -1,23 +1,13 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const coursesCollection = 'Courses';
+const cartsMongoCollection = 'Carts';
 
-const coursesSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-  },
-  teacher: {
-    type: String,
-  },
-  students: {
+const cartsMongoSchema = new Schema({
+  products: {
     type: Array,
-    default: []
-  }
+    default: [],
+  },  
 });
 
-const coursesModel = mongoose.model(coursesCollection, coursesSchema);
-module.exports = coursesModel;
+const cartsMongoModel = model(cartsMongoCollection, cartsMongoSchema);
+export default cartsMongoModel;

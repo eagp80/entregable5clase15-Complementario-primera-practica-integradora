@@ -13,6 +13,7 @@ import __dirname from './utils.js'
 import AppMongo from './appMongo.js'
 import CartsMongoRoute from './routes/cartsMongo.router.js';
 import ProductsMongoRoute from './routes/productsMongo.router.js';
+import ViewsMongoRoutes from './routes/viewsMongo.router.js'
 
 
 
@@ -86,7 +87,7 @@ const appMongo = new AppMongo([
        //new BaseRoute(),
        new CartsMongoRoute(),
        new ProductsMongoRoute(),
-       //new viewsRoutes(),
+       new ViewsMongoRoutes(),//ojo
      ]);
      
 appMongo.listen();

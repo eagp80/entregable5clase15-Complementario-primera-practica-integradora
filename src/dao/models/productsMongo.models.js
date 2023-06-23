@@ -1,37 +1,38 @@
 import mongoose from 'mongoose';
 
-const productMongoCollection = "Students";
+const productMongoCollection = "ProductsMongo";
 
 const productsMongoSchema = new mongoose.Schema({
-  firstName: {
+  title: {
     type: String,
     required: true,
   },
-  lastName: {
+  description: {
     type: String,
     required: true,
   },
-  age: {
-    type: Number,
+  code: {
+    type: String,
     required: true,
   },  
-  dni: {
+  price: {
     type: String,
     required: true,
-    unique: true,
   },
-  courses: {
-    type: Array,
-    default: [],
+  stock: {
+    type: Boolean,
+    required: true,
+    default: true,
   },
-  grade: {
-    type: Number,
-  },
-  gender: {
+  category: {
     type: String,
+    required: true,
   },
- 
-  
+  thumbnails: {
+    type: String,
+    required: true,
+  },
+    
 });
 
 const productMongoModel = mongoose.model(productMongoCollection, productsMongoSchema);//contiene seudonimo collection y esquema

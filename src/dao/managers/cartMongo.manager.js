@@ -1,4 +1,4 @@
-const coursesModel = require("../models/courses.models");
+import cartsMongoModel from "../models/cartsMongo.models.js";
 
 class CoursesManager {
   getAllCourses = async () => {
@@ -50,4 +50,4 @@ class CoursesManager {
   };
 }
 
-module.exports = CoursesManager
+export default CoursesManager;

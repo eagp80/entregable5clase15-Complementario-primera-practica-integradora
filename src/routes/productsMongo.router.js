@@ -17,12 +17,12 @@ class ProductsMongoRoutes {//no es un Router pero adentro tiene uno
   initProductsMongoRoutes() {
     this.router.get(`${this.path}/insertion`, async (req, res) => {
       try {
-        const students = await productsMongoModel.insertMany(productsMongoData);
+        const products = await productsMongoModel.insertMany(productsMongoData);
         // TODO: agregar validaciones
 
         return res.json({
           message: "productsMongo insert successfully",
-          productsMongoInserted: productsMongo,
+          productsMongoInserted: productsMongoData,
         });
       } catch (error) {
         console.log(

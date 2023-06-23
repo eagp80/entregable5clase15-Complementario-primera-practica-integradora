@@ -20,7 +20,7 @@ const mongoDBConnection = async () => {
     );
     console.log(`===================================================`);
   } catch (err) {
-    console.log("🚀 ~ file: mongo.config.js:9 ~ mongoDBConnection ~ err:", err);
+    console.log("🚀 ~ file: mongo.config.js:14 ~ mongoDBConnection ~ err:", err);
   }
 };
 
