@@ -77,10 +77,10 @@ class ProductsMongoRoutes {//no es un Router pero adentro tiene uno
         const productMongoBody = req.body;
 
         // TODO REVISANDO SI EL ESTUDIANTE YA FUE CREADO ANTERIOMENTE
-        const newProductMongo = await this.productMongoManager.createStudent(productMongoBody);
+        const newProductMongo = await this.productMongoManager.createProductMongo(productMongoBody);
         if (!newProductMongo) {
           return res.json({
-            message: `the productMongo with dni ${productMongoBody.dni} is already register`,
+            message: `the productMongo with code ${productMongoBody.code} is already register`,
           });
         }
 

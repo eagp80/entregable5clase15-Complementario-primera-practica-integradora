@@ -1,5 +1,5 @@
 import {Router} from "express";
-import ProductManager from '../productManager.js'
+import ProductManager from '../dao/managers/productManager.js'
 const productManager = new ProductManager("./products.json");
 const products =productManager.getProducts();
 productManager.products=products;
