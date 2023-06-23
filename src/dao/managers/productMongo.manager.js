@@ -30,7 +30,7 @@ class ProductMongoManager {
     try {
       // TODO REVISANDO SI EL ESTUDIANTE YA FUE CREADO ANTERIOMENTE
       const productMongoDetail = await productsMongoModel.findOne({
-        dni: bodyProductMongo.dni,
+        code: bodyProductMongo.code,
       });
       if (productMongoDetail && Object.keys(productMongoDetail).length !== 0) {//si existe y tiene alguna propiedad no crear
         return null;

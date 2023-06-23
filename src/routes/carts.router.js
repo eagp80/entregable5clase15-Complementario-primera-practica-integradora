@@ -28,7 +28,7 @@ router.get('/:cid', (req,res)=>{
 
 router.post('/',(req,res)=>{//si son varios archivos uploader.array('nombre de campos') se almacena en req.files
     cartManager.addCart();
-    res.send({status:"ok", message :"Carrito añadido (con array de productos vaío)" });
+    res.send({status:"ok", message :"Carrito añadido (con array de productos vacío)" });
 
 })
 

@@ -15,23 +15,25 @@ class ProductsMongoRoutes {//no es un Router pero adentro tiene uno
   }
 
   initProductsMongoRoutes() {
-    this.router.get(`${this.path}/insertion`, async (req, res) => {
-      try {
-        const products = await productsMongoModel.insertMany(productsMongoData);
-        // TODO: agregar validaciones
+    //******este bloque se utilizo una sola vez para insertar bastantes productos que teniamos  ya ****
+    // this.router.get(`${this.path}/insertion`, async (req, res) => {
+    //   try {
+    //     const products = await productsMongoModel.insertMany(productsMongoData);
+    //     // TODO: agregar validaciones
 
-        return res.json({
-          message: "productsMongo insert successfully",
-          productsMongoInserted: productsMongoData,
-        });
-      } catch (error) {
-        console.log(
-          "🚀 ~ file: productsMongo.routes.js:25 ~ ProductsMongoRoutes ~ this.router.get ~ error:",
-          error
-        );
-      }
-    });
-
+    //     return res.json({
+    //       message: "productsMongo insert successfully",
+    //       productsMongoInserted: productsMongoData,
+    //     });
+    //   } catch (error) {
+    //     console.log(
+    //       "🚀 ~ file: productsMongo.routes.js:25 ~ ProductsMongoRoutes ~ this.router.get ~ error:",
+    //       error
+    //     );    
+    //   }
+    // });
+    //******este bloque se utilizo una sola vez para insertar bastantes productos que teniamos  ya ****
+    
     this.router.get(`${this.path}`, async (req, res) => {
       try {
         // TODO: agregar validaciones
