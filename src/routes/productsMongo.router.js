@@ -35,7 +35,7 @@ class ProductsMongoRoutes {//no es un Router pero adentro tiene uno
     this.router.get(`${this.path}`, async (req, res) => {
       try {
         // TODO: agregar validaciones
-        const productsMongoArr = await this.productMongoManager.getAllProducts();
+        const productsMongoArr = await this.productMongoManager.getAllProductsMongo();
         return res.json({
           message: `get all products succesfully`,
           productsMongoLists: productsMongoArr,
@@ -52,8 +52,8 @@ class ProductsMongoRoutes {//no es un Router pero adentro tiene uno
     this.router.get(`${this.path}/:productMongoId`, async (req, res) => {
       try {
         const { productMongoId } = req.params;
-        const productMongoDetail = await this.productMongoManager.getStudentById(
-          studentId
+        const productMongoDetail = await this.productMongoManager.getProductMongoById(
+          productMongoId
         );
         // TODO: AGREGAR VALIDACION
 

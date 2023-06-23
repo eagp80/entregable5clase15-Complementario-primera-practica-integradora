@@ -18,13 +18,13 @@ class ViewsMongoRoutes {
       //   { name: "prueba", lastName: "apellidoPrueba", dni: "12345678" },
       // ];
       const productsMongo = await this.productMongoManager.getAllProductsMongo();
-      const mappedProductsMongo = productsMongo.map((st) => {
+      const mappedProductsMongo = productsMongo.map((p) => {
         return {
-          tittle: st.tittle,
-          price: st.price,         
+          title: p.title,
+          price: p.price,         
         };
       });
-      res.render("productsmongo", { productsMongo: mappedProductsMongo });
+      res.render("productsMongo", { productsMongo: mappedProductsMongo });
     });
 
     this.router.get(`${this.path}/cartsmongo`, async (req, res) => {
@@ -35,7 +35,7 @@ class ViewsMongoRoutes {
           products: cartMongo.products,
         };
       });
-      res.render("cartsmongo", { cartsMongo: cartsMongoMapped });
+      res.render("cartsMongo", { cartsMongo: cartsMongoMapped });
     });
   }
 }
