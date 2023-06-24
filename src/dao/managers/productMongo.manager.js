@@ -33,9 +33,18 @@ class ProductMongoManager {
         code: bodyProductMongo.code,
       });
       if (productMongoDetail && Object.keys(productMongoDetail).length !== 0) {//si existe y tiene alguna propiedad no crear
-        return null;
+        //return null;
+        throw 'ya existe el codigo del producto';
       }// si no existe estudiante o (si existe pero tiene una propiedad) 
 
+
+      //validar nombre reopetido
+      const productMongo= await productsMongoModel.findOne({
+        title: bodyProductMongo.title,
+      });
+      if (productMongoDetail && Object.keys(productMongoDetail).length !== 0) {//si existe y tiene alguna propiedad no crear
+        throw 'ya existe el nombre  del producto';
+      }// si no existe estudiante o (si existe pero tiene una propiedad) 
       const newProductMongo = await productsMongoModel.create(bodyProductMongo);
       // TODO: Manejar el error o si pasa algo mientras creo el documento de estudiante
 
@@ -45,6 +54,7 @@ class ProductMongoManager {
         "🚀 ~ file: productMongo.manager.js:42 ~ ProductMongoManager ~ createProductMongo= ~ error:",
         error
       );
+      throw error;
     }
   };
 }

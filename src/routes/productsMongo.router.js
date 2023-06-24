@@ -79,12 +79,12 @@ class ProductsMongoRoutes {//no es un Router pero adentro tiene uno
         // TODO REVISANDO SI EL ESTUDIANTE YA FUE CREADO ANTERIOMENTE
         const newProductMongo = await this.productMongoManager.createProductMongo(productMongoBody);
         if (!newProductMongo) {
-          return res.json({
-            message: `the productMongo with code ${productMongoBody.code} is already register`,
-          });
-        }
+          // return res.json({
+          //   message: `the productMongo with code ${productMongoBody.code} is already register`,
+          // });
+        }//se cambio por throw,
 
-        return res.json({
+        return res.status(201).json({
           message: `productMongo created successfully`,
           productMongo: newProductMongo,
         });
@@ -93,6 +93,10 @@ class ProductsMongoRoutes {//no es un Router pero adentro tiene uno
           "🚀 ~ file: productsMongo.routes.js:79 ~ ProductsMongoRoutes ~ this.router.post ~ error:",
           error
         );
+        //recibe tambiem el catch de createProductMongo
+         return res.status(400).json({
+            message: error.message ?? error            
+          });
       }
     });
   }
