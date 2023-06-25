@@ -44,21 +44,46 @@ class CartsMongoRoutes {
     });
 
     //this.router.get(`${this.path}/:courseId`, async (req, res) => {
-    this.router.get(`${this.path}/:cartsMongoId`, async (req, res) => {
+    this.router.get(`${this.path}/:cartMongoId`, async (req, res) => {
+      try {
+        // TODO: HACER VALIDACIONES ************************************************
+        const cartMongoId=req.params.cartMongoId;
+        let cartMongoData = await this.cartMongoManager.getCartMongoById(cartMongoId);
+        
+        // TODO REVISANDO SI EL CARRITO YA FUE CREADO ANTERIOMENTE
+        
+        if (!cartMongoData) {
+          return res.json({
+            message: `the cart by Id in Mongo Atlas not found`,
+          });
+        }//se cambio por throw,
 
-      return res.json({ message: `cartsMongo GET` });
+        return res.status(201).json({
+          message: `cart found successfully in Mongo Atlas`,
+          cart: cartMongoData,
+        });
+      } catch (error) {
+        console.log(
+          "🚀 ~ file: cartsMongo.routes.js:48 ~ CartsMongoRoutes ~ this.router.get ~ error:",
+          error
+        );
+        //recibe tambiem el catch de getCartById ProductMongo
+         return res.status(400).json({
+            message: error.message ?? error            
+          });
+        }
     });
 
     this.router.post(`${this.path}/`, async (req, res) => {
-      return res.json({ message: `cartsMongo POST` });
+      return res.json({ message: `cartsMongo POST no implementado aun` });
     });
 
     this.router.put(`${this.path}/:cartsMongoId`, async (req, res) => {
-      return res.json({ message: `cartsMongo PUT` });
+      return res.json({ message: `cartsMongo PUT no implementado aun` });
     });
 
     this.router.delete(`${this.path}/:cartsMongoId`, async (req, res) => {
-      return res.json({ message: `cartsMongo DELETE` });
+      return res.json({ message: `cartsMongo DELETE no implementado aun` });
     });
   }
 }
