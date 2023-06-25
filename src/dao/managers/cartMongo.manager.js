@@ -25,22 +25,21 @@ class CartsMongoManager {
     }
   };
 
-  createCourses = async (cartMongoBody) => {
+  createCartMongo = async (cartMongoBody) => {
     try {
-      const checkCart = await cartsMongoModel.findOne({
-        products: `${cartMongoBody.product.toLowerCase()}`,//product o products OJO
-      });
+      // const checkCart = await cartsMongoModel.findOne({
+      //   products: `${cartMongoBody.cart.toLowerCase()}`,//product o products OJO
+      // });
 
-      if (!checkCart) {
-        return null;
-      }
+      // if (!checkCart) {
+      //   return null;
+      // }
 
       const newCartMongo = await cartsMongoModel.create({
-        ...cartsMongoBody,
-        products: cartMongoBody.product.toLowerCase(),//product o products OJO
+        cartMongoBody        
       });
 
-      return newCart;
+      return newCartMongo;
     } catch (error) {
       console.log(
         "🚀 ~ file: carts.manager.js:45 ~ CartsManager ~ createCarts=async ~ error:",

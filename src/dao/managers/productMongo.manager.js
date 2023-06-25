@@ -28,25 +28,25 @@ class ProductMongoManager {
 
   createProductMongo = async (bodyProductMongo) => {
     try {
-      // TODO REVISANDO SI EL ESTUDIANTE YA FUE CREADO ANTERIOMENTE
+      // TODO REVISANDO SI EL PRODUCTO YA FUE CREADO ANTERIOMENTE
       const productMongoDetail = await productsMongoModel.findOne({
         code: bodyProductMongo.code,
       });
       if (productMongoDetail && Object.keys(productMongoDetail).length !== 0) {//si existe y tiene alguna propiedad no crear
         //return null;
         throw 'ya existe el codigo del producto';
-      }// si no existe estudiante o (si existe pero tiene una propiedad) 
+      }// si no existe producto o (si existe pero tiene una propiedad) 
 
 
-      //validar nombre reopetido
-      const productMongo= await productsMongoModel.findOne({
-        title: bodyProductMongo.title,
-      });
-      if (productMongoDetail && Object.keys(productMongoDetail).length !== 0) {//si existe y tiene alguna propiedad no crear
-        throw 'ya existe el nombre  del producto';
-      }// si no existe estudiante o (si existe pero tiene una propiedad) 
+      //validar nombre repetido
+      // const productMongo= await productsMongoModel.findOne({
+      //   title: bodyProductMongo.title,
+      // });
+      // if (productMongoDetail && Object.keys(productMongoDetail).length !== 0) {//si existe y tiene alguna propiedad no crear
+      //   throw 'ya existe el nombre  del producto';
+      // }// si no existe estudiante o (si existe pero tiene una propiedad) 
       const newProductMongo = await productsMongoModel.create(bodyProductMongo);
-      // TODO: Manejar el error o si pasa algo mientras creo el documento de estudiante
+      // TODO: Manejar el error o si pasa algo mientras creo el documento de producto
 
       return newProductMongo;
     } catch (error) {
