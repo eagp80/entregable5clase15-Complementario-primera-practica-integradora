@@ -45,6 +45,7 @@ class ProductMongoManager {
       // if (productMongoDetail && Object.keys(productMongoDetail).length !== 0) {//si existe y tiene alguna propiedad no crear
       //   throw 'ya existe el nombre  del producto';
       // }// si no existe estudiante o (si existe pero tiene una propiedad) 
+      console.log(bodyProductMongo);
       const newProductMongo = await productsMongoModel.create(bodyProductMongo);
       // TODO: Manejar el error o si pasa algo mientras creo el documento de producto
 

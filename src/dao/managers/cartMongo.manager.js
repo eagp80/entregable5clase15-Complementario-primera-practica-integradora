@@ -27,18 +27,18 @@ class CartsMongoManager {
 
   createCartMongo = async (cartMongoBody) => {
     try {
-      // const checkCart = await cartsMongoModel.findOne({
-      //   products: `${cartMongoBody.cart.toLowerCase()}`,//product o products OJO
+      // const checkCartMongo = await cartsMongoModel.findOne({
+      //   products: `${cartMongoBody.cartMongo.toLowerCase()}`,//product o products OJO
       // });
 
-      // if (!checkCart) {
+      // if (!checkCartMongo) {
       //   return null;
       // }
+      
+      console.log("cartMongoBody es:");
+      console.log(cartMongoBody);
 
-      const newCartMongo = await cartsMongoModel.create({
-        cartMongoBody        
-      });
-
+      const newCartMongo = await cartsMongoModel.create(cartMongoBody);
       return newCartMongo;
     } catch (error) {
       console.log(
