@@ -37,6 +37,7 @@ class CartsMongoManager {
       
       console.log("cartMongoBody es:");
       console.log(cartMongoBody);
+      throw error;
 
       const newCartMongo = await cartsMongoModel.create(cartMongoBody);
       return newCartMongo;

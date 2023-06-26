@@ -87,11 +87,14 @@ class CartsMongoRoutes {
           });
         }
     });
+    //*************************************************************************************
+    //*************************************************************************************
+    //*************************************************************************************
 
     this.router.post(`${this.path}/:cartMongoId/product/:productMongoId`, async (req, res) => {
       // return res.json({ message: `cartsMongo POST no implementado aun` });
       try {
-        // TODO: HACER VALIDACIONES ************************************************
+        // TODO: HACER VALIDACIONES 
         const cartMongoId=req.params.cartMongoId;
         const productMongoId=req.params.productMongoId;
         let cartMongoData = {};
@@ -101,37 +104,64 @@ class CartsMongoRoutes {
         console.log(cartMongoData);
         // TODO REVISANDO SI EL CARRITO YA FUE CREADO ANTERIOMENTE
         
-        if (!cartMongoData) {
+        if (!cartMongoData) {// 1. si no existe carrito no se hace nada
           return res.json({
             message: `the cart by Id in Mongo Atlas not found`,
           });
         }//se cambio por throw,
-        if(cartMongoData.products[0].product==new ObjectId("000000000000000000000000")){
+
+        //***** 2. si producto es el Id="000000000000000000000000" reemplazarlo */
+        if(cartMongoData.products[0].product==new ObjectId("000000000000000000000000").toString()){
         //cartMongoData.cart.products.push( productMongoId);
-        
-        cartsMongoModel.findByIdAndUpdate(cartMongoId, { products: [productMongoId, cartMongoData.products[1]+1] }, { new: true })
-        .then(updatedUser => {
-          console.log(updatedUser);
+        //console.log("verificado con exito Id 0000");
+        //console.log(cartMongoId);
+        //AAAAAAAAAAAA
+        console.log(cartMongoData.products[0].quantity+1);
+        const productNewId= new ObjectId(productMongoId);
+        console.log("entro en 2");
+
+
+        cartsMongoModel.findByIdAndUpdate(cartMongoId, { products: [{product: productNewId, quantity:cartMongoData.products[0].quantity+1}] }, { new: true })
+        .then(updatedCart => {//lo que devuelve lo muestro en consola
+          console.log(updatedCart);
         })
         .catch(error => {
           console.error("error Efren1",error);
         });
 
-        } else {
-          let arrAux= cartMongoData.products.push({ product:productMongoId, quantity: 0 })
+        } else {//  3. si el carrito existe, tiene Id distinto de "000000000000000000000000" verificar si ya tiene el producto
+          if(cartMongoData.products[0].product==new ObjectId(productMongoId).toString()){
+            console.log("entrooooo en 3")
+          cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: [{product:cartMongoData.products[0].product , quantity: cartMongoData.products[0].quantity+1}] }, { new: true })
+          .then(updatedCart => {
+            console.log(updatedCart);
+          })
+          .catch(error => {
+            console.error("error Efren3",error);
+          }); 
 
-          cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: arrAux }, { new: true })
-        .then(updatedUser => {
-          console.log(updatedUser);
-        })
-        .catch(error => {
-          console.error("error Efren1",error);
-        });
           
+          
+          
+          } else {//4 . si el carrrito existe y no tiene el producto
+            console.log("entrooooo en 4")
 
+          const productNewId= new ObjectId(productMongoId);
+          cartMongoData.products.push({ product:productNewId, quantity: 0 });    
+
+          cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: cartMongoData.products }, { new: true })
+        .then(updatedCart => {
+          console.log(updatedCart);
+        })
+        .catch(error => {
+          console.error("error Efren4",error);
+        }); 
+        
+        //jjjjjjjj
         }
 
 
+        }
 
         return res.status(201).json({
           //agregar 
