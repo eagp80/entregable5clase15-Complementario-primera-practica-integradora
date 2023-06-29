@@ -34,18 +34,23 @@ class CartsMongoManager {
       // if (!checkCartMongo) {
       //   return null;
       // }
-      
       console.log("cartMongoBody es:");
-      console.log(cartMongoBody);
-      throw error;
+      console.log(cartMongoBody);     
 
+      
       const newCartMongo = await cartsMongoModel.create(cartMongoBody);
+      if(!newCartMongo){
+        throw "no se creo el documento en mongo atlas";
+      }
       return newCartMongo;
+
     } catch (error) {
       console.log(
         "🚀 ~ file: carts.manager.js:45 ~ CartsManager ~ createCarts=async ~ error:",
         error
       );
+      throw error;
+
     }
   };
 }

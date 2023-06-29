@@ -90,6 +90,10 @@ class CartsMongoRoutes {
     //*************************************************************************************
     //*************************************************************************************
     //*************************************************************************************
+    // Agregar un Id de  producto a un carrito por medio de Id
+    //*************************************************************************************
+    //*************************************************************************************
+    //*************************************************************************************
 
     this.router.post(`${this.path}/:cartMongoId/product/:productMongoId`, async (req, res) => {
       // return res.json({ message: `cartsMongo POST no implementado aun` });
@@ -100,7 +104,7 @@ class CartsMongoRoutes {
         let cartMongoData = {};
 
         cartMongoData = await this.cartMongoManager.getCartMongoById(cartMongoId);
-        console.log(" cartMongoData tomado de base de datos mongo atlas:");
+        console.log("cartMongoData tomado de base de datos mongo atlas:");
         console.log(cartMongoData);
         // TODO REVISANDO SI EL CARRITO YA FUE CREADO ANTERIOMENTE
         
@@ -112,61 +116,76 @@ class CartsMongoRoutes {
 
         //***** 2. si producto es el Id="000000000000000000000000" reemplazarlo */
         if(cartMongoData.products[0].product==new ObjectId("000000000000000000000000").toString()){
-        //cartMongoData.cart.products.push( productMongoId);
-        //console.log("verificado con exito Id 0000");
-        //console.log(cartMongoId);
-        //AAAAAAAAAAAA
-        console.log(cartMongoData.products[0].quantity+1);
-        const productNewId= new ObjectId(productMongoId);
-        console.log("entro en 2");
+            //cartMongoData.cart.products.push( productMongoId);
+            //console.log("verificado con exito Id 0000");
+            //console.log(cartMongoId);
+            //AAAAAAAAAAAA
+            // console.log(cartMongoData.products[0].quantity+1);
+            const productNewId= new ObjectId(productMongoId);
+            console.log("entro en 2");
 
 
-        cartsMongoModel.findByIdAndUpdate(cartMongoId, { products: [{product: productNewId, quantity:cartMongoData.products[0].quantity+1}] }, { new: true })
-        .then(updatedCart => {//lo que devuelve lo muestro en consola
-          console.log(updatedCart);
-        })
-        .catch(error => {
-          console.error("error Efren1",error);
-        });
+            cartsMongoModel.findByIdAndUpdate(cartMongoId, { products: [{product: productNewId, quantity:cartMongoData.products[0].quantity+1}] }, { new: true })
+            .then(updatedCart => {//lo que devuelve lo muestro en consola
+              console.log(updatedCart);
+            })
+            .catch(error => {
+              console.error("error Efren1",error);
+            });
 
-        } else {//  3. si el carrito existe, tiene Id distinto de "000000000000000000000000" verificar si ya tiene el producto
-          if(cartMongoData.products[0].product==new ObjectId(productMongoId).toString()){
-            console.log("entrooooo en 3")
-          cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: [{product:cartMongoData.products[0].product , quantity: cartMongoData.products[0].quantity+1}] }, { new: true })
-          .then(updatedCart => {
-            console.log(updatedCart);
-          })
-          .catch(error => {
-            console.error("error Efren3",error);
-          }); 
+        } else {// fin if 2, else al if 2... Situacion 3. si el carrito existe, tiene Id distinto de "000000000000000000000000" verificar si ya tiene el producto
+            console.log("verificando antes de entrar a 3 o 4")
+            const idComp = new ObjectId(productMongoId);
+            var existeProduct = false;
+            var indexOfProducts= 0;
+            cartMongoData.products.forEach((element,i) => {
+            console.log(element.product);
+            console.log(idComp);
+            console.log(i);
 
-          
-          
-          
-          } else {//4 . si el carrrito existe y no tiene el producto
-            console.log("entrooooo en 4")
+              if(element.product.toString() === idComp.toString()){//este if solo funciono con toString() en ambos
+                console.log("entro al ifffffff");
+                existeProduct= true;
+                indexOfProducts=i;              
+              }
+              
+            });
+            // console.log("fuera del foreahc");
+            // console.log(existeProduct);
+            // console.log(cartMongoData.products[indexOfProducts].product)
+            // console.log(new ObjectId(productMongoId))
 
-          const productNewId= new ObjectId(productMongoId);
-          cartMongoData.products.push({ product:productNewId, quantity: 0 });    
+            if(existeProduct==true){//if 3 situacion 3
+                  cartMongoData.products[indexOfProducts].quantity++;
+                  console.log("entrooooo en 3")         
 
-          cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: cartMongoData.products }, { new: true })
-        .then(updatedCart => {
-          console.log(updatedCart);
-        })
-        .catch(error => {
-          console.error("error Efren4",error);
-        }); 
-        
-        //jjjjjjjj
-        }
+                  cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: cartMongoData.products }, { new: true })
+                  .then(updatedCart => {
+                  console.log(updatedCart);
+                  })
+                  .catch(error => {
+                  console.error("error Efren3",error);
+                  });           
+            
+            } else {//else a if 3,  situacion 4 . si el carrrito existe y no tiene el producto ***********TRABAJAR ESTO*********************
+                  console.log("entrooooo en 4")
 
-
-        }
-
+                  const productNewId= new ObjectId(productMongoId);
+                  cartMongoData.products.push({ product:productNewId, quantity: 1 }); 
+                  cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: cartMongoData.products }, { new: true })
+                  .then(updatedCart => {
+                  console.log(updatedCart);
+                  })
+                  .catch(error => {
+                  console.error("error Efren4",error);
+                  });               
+              //jjjjjjjj
+            }// fin else de situacion 4
+        }//fin else del if 2, situacion 3
         return res.status(201).json({
           //agregar 
-          message: `cart found successfully in Mongo Atlas`,
-          cart: cartMongoData,
+          message: `cart found successfully and update in Mongo Atlas`
+        
         });
       } catch (error) {
         console.log(
