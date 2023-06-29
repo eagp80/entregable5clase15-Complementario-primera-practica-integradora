@@ -139,12 +139,12 @@ class CartsMongoRoutes {
             var existeProduct = false;
             var indexOfProducts= 0;
             cartMongoData.products.forEach((element,i) => {
-            console.log(element.product);
-            console.log(idComp);
-            console.log(i);
+            // console.log(element.product);
+            // console.log(idComp);
+            // console.log(i);
 
               if(element.product.toString() === idComp.toString()){//este if solo funciono con toString() en ambos
-                console.log("entro al ifffffff");
+                // console.log("entro al ifffffff");
                 existeProduct= true;
                 indexOfProducts=i;              
               }
