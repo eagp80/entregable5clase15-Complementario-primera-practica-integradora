@@ -104,8 +104,8 @@ class CartsMongoRoutes {
         let cartMongoData = {};
 
         cartMongoData = await this.cartMongoManager.getCartMongoById(cartMongoId);
-        console.log("cartMongoData tomado de base de datos mongo atlas:");
-        console.log(cartMongoData);
+        // console.log("cartMongoData tomado de base de datos mongo atlas:");
+        // console.log(cartMongoData);
         // TODO REVISANDO SI EL CARRITO YA FUE CREADO ANTERIOMENTE
         
         if (!cartMongoData) {// 1. si no existe carrito no se hace nada
@@ -161,6 +161,7 @@ class CartsMongoRoutes {
 
                   cartsMongoModel.findByIdAndUpdate(cartMongoId, {products: cartMongoData.products }, { new: true })
                   .then(updatedCart => {
+                  console.log("Carrito actualizado");
                   console.log(updatedCart);
                   })
                   .catch(error => {
